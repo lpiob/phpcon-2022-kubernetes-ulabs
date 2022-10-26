@@ -22,6 +22,33 @@ Podczas warsztatu ćwiczenia bedą wykonywane na współdzielonym klastrze Kuber
 
 Użytkownikom Windows może być przydatny shell kompatybilny z bashem, np. git-bash albo WSL.
 
+
+## Zalecana konfiguracja dodatkowa
+
+Dla komfortowej pracy CLI zalecane jest skonfigurowanie autokompletowania oraz aliasu na przełączenie namespace.
+
+### Autokompletowanie
+
+Do dopisania w `~/.bashrc`
+
+```
+source <(kubectl completion bash)
+source <(helm completion bash)
+```
+
+Użytkownicy innych shelli np. zsh mogą podmienić `bash` na `zsh` w poleceniach i nazwie pliku.
+
+Efektem wprowadzenia tej zmiany będzie możliwość autokompletowania poleceń kubectl i helm za pomocą klawisza tabulacji.
+
+### Alias na przełączenie namespace
+
+Skraca częste, ale długie polecenie:
+
+Do dopisania w `~/.bashrc` lub analogicznym pliku dla innych shelli.
+```
+alias kcd='kubectl config set-context $(kubectl config current-context) --namespace '
+```
+
 ## Weryfikacja działania narzędzi
 
 ### aws-cli
@@ -64,30 +91,4 @@ eef26ceb3309: Pull complete
 Digest: sha256:47a8d86548c232e44625d813b45fd92e81d07c639092cd1f9a49d98e1fb5f737
 Status: Downloaded newer image for nginx:latest
 docker.io/library/nginx:latest
-```
-
-## Zalecana konfiguracja dodatkowa
-
-Dla komfortowej pracy CLI zalecane jest skonfigurowanie autokompletowania oraz aliasu na przełączenie namespace.
-
-### Autokompletowanie
-
-Do dopisania w `~/.bashrc`
-
-```
-source <(kubectl completion bash)
-source <(helm completion bash)
-```
-
-Użytkownicy innych shelli np. zsh mogą podmienić `bash` na `zsh` w poleceniach i nazwie pliku.
-
-Efektem wprowadzenia tej zmiany będzie możliwość autokompletowania poleceń kubectl i helm za pomocą klawisza tabulacji.
-
-### Alias na przełączenie namespace
-
-Skraca częste, ale długie polecenie:
-
-Do dopisania w `~/.bashrc` lub analogicznym pliku dla innych shelli.
-```
-alias kcd='kubectl config set-context $(kubectl config current-context) --namespace '
 ```
